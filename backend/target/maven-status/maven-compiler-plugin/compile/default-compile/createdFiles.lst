@@ -1,6 +1,0 @@
-com\example\attendance\config\UserConfig.class
-com\example\attendance\repo\Repo.class
-com\example\attendance\entity\StudentAttendance.class
-com\example\attendance\AttendanceApplication.class
-com\example\attendance\config\SecurityConfig.class
-com\example\attendance\controller\AttendanceController.class
