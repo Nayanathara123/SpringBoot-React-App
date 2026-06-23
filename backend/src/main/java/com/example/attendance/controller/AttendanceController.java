@@ -64,7 +64,7 @@ public class AttendanceController {
     }
 
     @DeleteMapping("/{id}")
-    public void del(@PathVariable Long id) {
-        repo.deleteById(id);
+    public void deleteAttendance(@PathVariable Long id) {
+        service.deleteAttendance(id);
     }
 }

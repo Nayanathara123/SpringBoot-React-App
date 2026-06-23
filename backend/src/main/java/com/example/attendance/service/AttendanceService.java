@@ -75,4 +75,8 @@ public class AttendanceService {
 
         return attendanceRepository.save(attendance);
     }
+
+    public void deleteAttendance(Long id) {
+        attendanceRepository.deleteById(id);
+    }
 }
