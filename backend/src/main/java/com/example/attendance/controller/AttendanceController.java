@@ -41,21 +41,27 @@ public class AttendanceController {
     public StudentAttendance saveAttendance(
             @RequestBody AttendanceRequestDTO dto) {
 
-                System.out.println("Student ID = " + dto.getStudentId());
-    System.out.println("Course ID = " + dto.getCourseId());
+            System.out.println("Student ID = " + dto.getStudentId());
+            System.out.println("Course ID = " + dto.getCourseId());
 
         return service.saveAttendance(dto);
     }
 
-    // @PutMapping("/{id}")
-    // public StudentAttendance upd(@PathVariable Long id, @RequestBody StudentAttendance u) {
-    //     StudentAttendance a = repo.findById(id).orElseThrow();
-    //     a.setStudentName(u.getStudentName());
-    //     a.setCourse(u.getCourse());
-    //     a.setDate(u.getDate());
-    //     a.setPresent(u.isPresent());
-    //     return repo.save(a);
-    // }
+    @GetMapping("/{id}")
+    public StudentAttendance getAttendanceById(
+            @PathVariable Long id) {
+
+        return repo.findById(id).orElseThrow(() ->
+                    new RuntimeException("Attendance not found"));
+    }
+
+    @PutMapping("/{id}")
+    public StudentAttendance updateAttendance(
+            @PathVariable Long id,
+            @RequestBody AttendanceRequestDTO dto) {
+
+        return service.updateAttendance(id, dto);
+    }
 
     @DeleteMapping("/{id}")
     public void del(@PathVariable Long id) {

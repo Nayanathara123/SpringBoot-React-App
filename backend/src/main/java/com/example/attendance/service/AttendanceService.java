@@ -47,4 +47,32 @@ public class AttendanceService {
         return attendanceRepository.save(attendance);
 
     }
+
+
+    public StudentAttendance updateAttendance(
+        Long id,
+        AttendanceRequestDTO dto) {
+
+        StudentAttendance attendance =
+                attendanceRepository.findById(id)
+                .orElseThrow(() ->
+                        new RuntimeException("Attendance not found"));
+
+        Student student =
+                studentRepository.findById(dto.getStudentId())
+                .orElseThrow(() ->
+                        new RuntimeException("Student not found"));
+
+        Course course =
+                courseRepository.findById(dto.getCourseId())
+                .orElseThrow(() ->
+                        new RuntimeException("Course not found"));
+
+        attendance.setStudent(student);
+        attendance.setCourse(course);
+        attendance.setDate(dto.getDate());
+        attendance.setPresent(dto.isPresent());
+
+        return attendanceRepository.save(attendance);
+    }
 }
