@@ -6,6 +6,7 @@ D:\Java_Projects\full-attendance-app\backend\src\main\java\com\example\attendanc
 D:\Java_Projects\full-attendance-app\backend\src\main\java\com\example\attendance\dto\AttendanceDTO.java
 D:\Java_Projects\full-attendance-app\backend\src\main\java\com\example\attendance\controller\AttendanceController.java
 D:\Java_Projects\full-attendance-app\backend\src\main\java\com\example\attendance\service\CourseService.java
+D:\Java_Projects\full-attendance-app\backend\src\main\java\com\example\attendance\config\CorsConfig.java
 D:\Java_Projects\full-attendance-app\backend\src\main\java\com\example\attendance\controller\StudentController.java
 D:\Java_Projects\full-attendance-app\backend\src\main\java\com\example\attendance\repo\CourseRepository.java
 D:\Java_Projects\full-attendance-app\backend\src\main\java\com\example\attendance\service\AttendanceService.java
