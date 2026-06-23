@@ -1,18 +1,56 @@
-import React, { useState } from 'react';
+import React from 'react';
 import axios from 'axios';
+import { useEffect, useState } from 'react';
 
 function AddAttendance() {
 
-  const [studentName, setStudentName] = useState('');
-  const [course, setCourse] = useState('');
+  const [studentId, setStudentId] = useState('');
+  const [courseId, setCourseId] = useState('');
   const [date, setDate] = useState('');
   const [present, setPresent] = useState(true);
 
+  const [studentData, setStudentData] = useState([]);
+
+  const [courses, setCourses] = useState([]);
+
+  //Load student data from local database to frontend
+  useEffect(() => {
+
+    axios.get(
+      'http://localhost:8080/api/students',
+      {
+        auth: {
+          username: 'admin',
+          password: 'password'
+        }
+      }
+    )
+    .then(response => {
+      setStudentData(response.data);
+    });
+
+    // Load courses from local database to frontend
+    axios.get(
+      'http://localhost:8080/api/courses',
+      {
+        auth: {
+          username: 'admin',
+          password: 'password'
+        }
+      }
+    )
+    .then(response => {
+      setCourses(response.data);
+    });
+
+  }, []);
+
   const saveAttendance = () => {
 
+    //Post method to save attendance data to the backend
     const attendanceData = {
-      studentName,
-      course,
+      studentId: Number(studentId),
+      courseId: Number(courseId),
       date,
       present
     };
@@ -49,21 +87,33 @@ function AddAttendance() {
 
         <div className="space-y-5">
 
-          <input
-            type="text"
-            placeholder="Student Name"
-            value={studentName}
-            onChange={(e) => setStudentName(e.target.value)}
-            className="w-full border p-4 rounded-xl"
-          />
+          <select value={studentId} onChange={(e) => setStudentId(e.target.value)}
+            className="w-full border p-4 rounded-xl">
 
-          <input
-            type="text"
-            placeholder="Course"
-            value={course}
-            onChange={(e) => setCourse(e.target.value)}
-            className="w-full border p-4 rounded-xl"
-          />
+            <option value="">Select Student</option>
+
+            {studentData.map(student => (
+              <option
+                key={student.stdId}
+                value={student.stdId}>
+                {student.stdName}
+              </option>
+            ))}
+          </select>
+
+          <select value={courseId} onChange={(e) => setCourseId(e.target.value)}
+            className="w-full border p-4 rounded-xl">
+
+            <option value="">Select Course</option>
+
+            {courses.map(course => (
+              <option
+                key={course.id}
+                value={course.id}>
+                {course.courseName}
+              </option>
+            ))}
+          </select>
 
           <input
             type="date"

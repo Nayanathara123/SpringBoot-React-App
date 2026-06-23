@@ -2,10 +2,12 @@ import React from 'react';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { BrowserRouter,Routes,Route} from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 function App() {
 
   const [attendanceData, setAttendanceData] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
 
@@ -60,6 +62,7 @@ function App() {
                 <th className="p-4 text-left">Course</th>
                 <th className="p-4 text-left">Date</th>
                 <th className="p-4 text-left">Status</th>
+                <th className="p-4 text-left">Actions</th>
               </tr>
 
             </thead>
@@ -80,7 +83,7 @@ function App() {
                   </td>
 
                   <td className="p-4">
-                    {student.course}
+                    {student.courseName}
                   </td>
 
                   <td className="p-4">
@@ -102,9 +105,13 @@ function App() {
                       </span>
 
                     )}
-
                   </td>
 
+                  <td className="p-4">
+                    <button onClick={() => navigate(`/edit-attendance/${student.id}`)} className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+                      Edit
+                    </button>
+                  </td>
                 </tr>
 
               ))}

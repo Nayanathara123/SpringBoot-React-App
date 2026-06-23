@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { BrowserRouter,Routes,Route} from 'react-router-dom';
 import Dashboard from './pages/Dashboard';
 import AddAttendance from './pages/AddAttendance';
+import EditAttendance from "./pages/EditAttendance";
 
 function App() {
 
@@ -32,15 +33,11 @@ function App() {
 
       <Routes>
 
-        <Route
-          path="/"
-          element={<Dashboard />}
-        />
+        <Route path="/" element={<Dashboard />}/>
 
-        <Route
-          path="/add-attendance"
-          element={<AddAttendance />}
-        />
+        <Route path="/add-attendance" element={<AddAttendance />}/>
+
+        <Route path="/edit-attendance/:id" element={<EditAttendance />}/>
 
       </Routes>
 
